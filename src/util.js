@@ -16,6 +16,11 @@ export const toggleDone=async (id,done)=>{
   const docRef=doc(db, 'todolist',id)
   await updateDoc(docRef,{done})
 }
+export const updateTodo=async (id,descr)=>{
+  const docRef=doc(db, 'todolist',id)
+  await updateDoc(docRef,{descr})
+}
+
 export const addNewTodo=async (newItem)=>{
   const collectionRef=collection(db, 'todolist')
   const newTodo={

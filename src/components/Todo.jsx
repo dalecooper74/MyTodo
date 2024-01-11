@@ -8,10 +8,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { deleteTodo, toggleDone } from '../util';
 import CreateIcon from '@mui/icons-material/Create';
+import { EditTodo } from './EditTodo';
 
 export const Todo=({id,descr,done})=> {
-  
+  const [open, setOpen] = React.useState(false);
+
         return (
+          <>
           <ListItem
             key={id}
             
@@ -23,7 +26,10 @@ export const Todo=({id,descr,done})=> {
                 <DeleteIcon sx={{color: 'red'}} />
               </IconButton>
 
-              <IconButton edge="end" aria-label="comments">
+              <IconButton edge="end" aria-label="comments"
+              onClick={()=>setOpen(true)}
+              >
+
                 <CreateIcon sx={{color: 'green'}} />
               </IconButton>
             </>
@@ -44,5 +50,7 @@ export const Todo=({id,descr,done})=> {
               <ListItemText id={id} primary={descr} />
             </ListItemButton>
           </ListItem>
+          {open && <EditTodo open={open} setOpen={setOpen} id={id} descr={descr}/>}
+          </>
         );
       }
